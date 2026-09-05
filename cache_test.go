@@ -9,6 +9,12 @@ func TestCache(t *testing.T) {
 	if u != "London" {
 		t.Fatalf("expected output: `London`, returned: `%s`", u)
 	}
+
+	cache.Set("UK", "Manchester")
+	u = cache.Get("UK")
+	if u != "Manchester" {
+		t.Fatalf("Expected output `manchester`, actual output: `%s", u)
+	}
 }
 
 func TestCache2(t *testing.T) {
@@ -22,8 +28,8 @@ func TestCache2(t *testing.T) {
 	cache.Set("Ireland", "Cork")
 
 	u := cache.Get("UK")
-	if u != "London" {
-		t.Fatalf("UK/London has been removed")
+	if u != "" {
+		t.Fatalf("UK/London should have been removed")
 
 	}
 
@@ -55,4 +61,6 @@ func TestCache2(t *testing.T) {
 	if x != "Paris" {
 		t.Fatalf("Failed: France isn't present, `%s", x)
 	}
+
+	println("cache result: ", n, m, x)
 }
